@@ -26,15 +26,16 @@ class Augment(tf.keras.layers.Layer):
     super(Augment, self).__init__()
     self.crop_size = crop_size
 
-    self.brightness = (0.6, 1.4)
-    self.contrast = (0.6, 1.4)
-    self.saturation = (0.6, 1.4)
-    self.hue = 0.5 / 3.14
+    self.brightness = (0.6, 1.4) # 亮度范围
+    self.contrast = (0.6, 1.4)   # 对比度范围
+    self.saturation = (0.6, 1.4) # 饱和度范围
+    self.hue = 0.5 / 3.14        # 调整色调
 
-    self.asymmetric_color_aug_prob = 0.2
-    self.spatial_aug_prob = 0.8
-    self.eraser_aug_prob = 0.5
+    self.asymmetric_color_aug_prob = 0.2 # 20%的几率进行非对称颜色增强(augment_color)
+    self.spatial_aug_prob = 0.8 # 80%的几率进行空间增强(random_scale)
+    self.eraser_aug_prob = 0.5  # 50%的几率进行擦除增强(eraser_transform)
 
+    # 以下五个为空间增强的参数
     self.min_scale = min_scale
     self.max_scale = max_scale
     self.max_stretch = 0.2
